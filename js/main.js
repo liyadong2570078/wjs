@@ -3,7 +3,7 @@
  * @Author: iceStone
  * @Date:   2015-12-12 10:59:26
  * @Last Modified by:   Administrator
- * @Last Modified time: 2016-11-16 18:30:12
+ * @Last Modified time: 2017-02-06 10:03:15
  */
 
 'use strict';
@@ -73,7 +73,7 @@ var $ulContainar = $('.nav-tabs');
 //因为本身有paddingleft =20
   var lis_Width = 20;
   //遍历子元素
-  console.log($ulContainar.children()); 
+  // console.log($ulContainar.children()); 
   $ulContainar.children().each(function(index, element) {
      //console.log(element.clientWidth);
      //console.log($(element.width()));
