@@ -3,7 +3,7 @@
  * @Author: iceStone
  * @Date:   2015-12-12 10:59:26
  * @Last Modified by:   Administrator
- * @Last Modified time: 2017-02-06 10:03:15
+ * @Last Modified time: 2017-02-06 13:31:57
  */
 
 'use strict';
@@ -111,12 +111,13 @@ $(window).on("resize",resize).trigger("resize");
 
     //获取界面上轮播图容器
     var $carousels=$('.carousel');
-    var startX,endX;
+    var startX,endX;  //设置全局变量
+    var offset=50;
     //注册滑动事件    这里的案例可以看X的偏移量 最开始按下的x点减去松手的X点 正数左滑，负数右滑
     $carousels.on('touchstart',function(e){
          //手指触摸开始时记录一下手指所在的坐标X1
         startX=e.originalEvent.touches[0].clientX;
-        //console.log(startX);
+        console.log(startX);
     });
 
     //$carousels.on('touchmove',function(e){
@@ -127,18 +128,29 @@ $(window).on("resize",resize).trigger("resize");
     $carousels.on('touchmove', function(e) {
         // 变量重复赋值
         //endX = ;
-         console.log(e.originalEvent.touches[0]);
+         //console.log(e.originalEvent.touches[0]);
+         endX=e.originalEvent.touches[0].clientX;
+        //console.log(endX);
     });
     $carousels.on('touchend',function(e){
         //结束触摸的一瞬间记录最后手指所在的坐标X2
-        //console.log(endX);
-        //console.log(startX>endX? '向左':'向右');
+        console.log(endX);
+        //控制精度
+        //获取每次运动的距离，当距离大于一定值时认为是有方向的变化.(因为有可能是用户误触)
+        var distance=Math.abs(startX-endX);  //获得绝对值
+        if (distance>offset){
+          //有方向的运动
+          console.log(startX>endX? '向左':'向右');
+          // 2.根据或得到的方向选择上一张或者下一张
+      //-$('a').clinck();
+    //-原生的carousel方法实现的 http://v3.bootcss.com/javascript/#carousel
+         $(this).carousel(startX>endX? 'next':'prev')
+        };
+        
 
     });
 
-    // 2.根据或得到的方向选择上一张或者下一张
-      //-$('a').clinck();
-    //-原生的carousel方法实现的 http://v3.bootcss.com/javascript/#carousel
+    
 
 
 });
